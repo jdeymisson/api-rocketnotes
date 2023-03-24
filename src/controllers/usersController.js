@@ -1,8 +1,12 @@
+const AppError = require("../utils/AppError");
+
 class UsersController {
     create(request, response) {
         const { nome, email } = request.body;
-        
-        response.status(200).json({ nome, email });
+        if(!nome) {
+            throw new AppError("Usuário precisa ser informado!");
+        };
+        response.status(201).json({ nome, email });
     };
 };
 
