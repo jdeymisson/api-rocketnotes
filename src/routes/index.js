@@ -5,7 +5,19 @@ const postsRoutes = require("./posts.routes");
 
 const routes = Router();
 
-routes.use("/users", usersRoutes);
+const myMiddlewere = (request, response, next) => {
+    const { isAdmin } = request.body;
+
+    if(isAdmin !== true) {
+        response.status(401).json({ "message": "Usuário não autorizado!" });
+        return;
+    };
+
+    next();
+};
+
+
+routes.use("/users", myMiddlewere, usersRoutes);
 routes.use("/posts", postsRoutes);
 
 module.exports = routes;
