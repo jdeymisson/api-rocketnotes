@@ -17,6 +17,6 @@ const myMiddlewere = (request, response, next) => {
 
 const usersController = new UsersController();
 
-usersRoutes.post("/", myMiddlewere, usersController.create);
+usersRoutes.post("/", usersController.create);
 
 module.exports = usersRoutes;
