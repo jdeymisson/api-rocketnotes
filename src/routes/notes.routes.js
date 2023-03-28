@@ -1,8 +1,8 @@
 const { Router } = require("express");
 
-const UsersController = require("../controllers/UsersController");
+const NotesController = require("../controllers/NotesController");
 
-const usersRoutes = Router();
+const notesRoutes = Router();
 
 const myMiddlewere = (request, response, next) => {
     const { isAdmin } = request.body;
@@ -15,9 +15,10 @@ const myMiddlewere = (request, response, next) => {
     next();
 };
 
-const usersController = new UsersController();
+const notesController = new NotesController();
 
-usersRoutes.post("/", usersController.create);
-usersRoutes.put("/:id", usersController.update);
+notesRoutes.post("/:user_id", notesController.create);
+notesRoutes.get("/:id", notesController.show);
 
-module.exports = usersRoutes;
+
+module.exports = notesRoutes;
