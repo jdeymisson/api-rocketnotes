@@ -31,7 +31,7 @@ class NotesController {
 
         await knex("tags").insert(tagsInsert);
 
-        response.status(201).json({ message: "Nota criada com sucesso!" })
+        return response.status(201).json({ message: "Nota criada com sucesso!" })
     };
 
     async show(request, response) {
@@ -51,7 +51,7 @@ class NotesController {
         note.links = links;
         note.tags = tags;
 
-        response.status(200).json({
+        return response.status(200).json({
             ...note,
             tags,
             links
@@ -100,7 +100,7 @@ class NotesController {
             };
         });
 
-        response.status(200).json(notesWithTags);
+       return response.status(200).json(notesWithTags);
     };
 };
 

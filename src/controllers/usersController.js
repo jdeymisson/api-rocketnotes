@@ -17,7 +17,7 @@ class UsersController {
         if(name && email && password) {
             await knex("users")
                 .insert({ name, email, password: hashedPassword });
-            response.status(201).json({
+            return response.status(201).json({
                 message: "Usuário cadastrado com sucesso!"
             });
         } else {
@@ -64,7 +64,7 @@ class UsersController {
                 password: user.password })
             .where({ id });
 
-        response.json({message: "Usuário atualizado com sucesso."});
+        return response.json({message: "Usuário atualizado com sucesso."});
     };
 };
 

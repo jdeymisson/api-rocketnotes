@@ -31,7 +31,7 @@ class TagsController {
 
         await knex("tags").insert(tagsInsert);
 
-        response.status(201).json({ message: "Nota criada com sucesso!" })
+        return response.status(201).json({ message: "Nota criada com sucesso!" })
     };
 
     async show(request, response) {
@@ -51,7 +51,7 @@ class TagsController {
         note.links = links;
         note.tags = tags;
 
-        response.status(200).json({
+        return response.status(200).json({
             ...note,
             tags,
             links
@@ -65,7 +65,7 @@ class TagsController {
             .where({id})
             .delete()
 
-        response.status(200).json({ message: "Nota deletada com sucesso."});
+        return response.status(200).json({ message: "Nota deletada com sucesso."});
     };
 
     async index (request, response) {
@@ -90,7 +90,7 @@ class TagsController {
             .where({ user_id })
             .whereLike("title", `%${title}%`)
         };
-       
+
         const userTags = await knex("tags").where({ user_id });
         const notesWithTags = notes.map(note => {
             const noteTags = userTags.filter(tag => tag.note_id === note.id);
@@ -100,7 +100,7 @@ class TagsController {
             };
         });
 
-        response.status(200).json(notesWithTags);
+        return response.status(200).json(notesWithTags);
     };
 };
 
