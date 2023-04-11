@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const  { MULTER, UPLOADS_FOLDER, TMP_FOLDER }= require("../config/upload");
+const  { UPLOADS_FOLDER, TMP_FOLDER }= require("../config/upload");
 
 class DiskStorage {
     async saveFile(file){
@@ -22,7 +22,5 @@ class DiskStorage {
         await fs.promises.unlink(filePath);
     };
 };
-
-module.exports = DiskStorage;
 
 module.exports = DiskStorage;
