@@ -1,17 +1,18 @@
 const fs = require("fs");
 const path = require("path");
-const  { UPLOADS_FOLDER, TMP_FOLDER }= require("../config/upload");
+const  uploadConfig = require("../config/upload");
 
 class DiskStorage {
     async saveFile(file){
         await fs.promises.rename(
-            path.resolve(TMP_FOLDER, file),
-            path.resolve(UPLOADS_FOLDER, file)
+            path.resolve(uploadConfig.TMP_FOLDER, file),
+            path.resolve(uploadConfig.UPLOADS_FOLDER, file)
         );
+    return file;
     };
 
     async deleteFile(file){
-        const filePath =  path.resolve(UPLOADS_FOLDER, file);
+        const filePath =  path.resolve(uploadConfig.UPLOADS_FOLDER, file)
 
         try {
             await fs.promises.stat(filePath);
