@@ -12,7 +12,6 @@ class UsersAvatarController {
             .where({ id: id_user })
             .first();
 
-      
         if(!user) {
             throw new AppError("Para alterar o avatar é necessário está autenticado.");
         };
